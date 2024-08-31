@@ -32,3 +32,5 @@ Animal[Symbol.iterator] = function(){
 for(let i of Animal){
 	console.log(i);
 }
+
+console.groupEnd();

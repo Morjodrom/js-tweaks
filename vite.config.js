@@ -1,5 +1,5 @@
 import {defineConfig} from 'vite';
-import vue from '@vitejs/plugin-vue';
+import vue from '@vitejs/plugin-vue2';
 import {resolve} from 'path';
 
 let base = undefined;
@@ -11,20 +11,21 @@ if(process.argv[3]?.includes('base')){
 
 export default defineConfig(({command, mode}) => {
 	const defaultConfig = {
+		build: {
+			rollupOptions: {
+				input: {
+					main: resolve(__dirname, 'index.html'),
+					"ex4-vue-v-dom-issue": resolve(__dirname, 'ex4-vue-v-dom-issue/index.html')
+				}
+			}
+		},
 		resolve: {
 			alias: {
 				'$': resolve(__dirname, 'src')
 			}
 		},
 		plugins: [
-			vue({
-				template: {
-					transformAssetUrls: {
-						base: null,
-						includeAbsolute: false,
-					},
-				},
-			})
+			vue()
 		]
 	};
 
